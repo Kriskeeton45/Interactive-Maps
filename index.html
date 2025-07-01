@@ -7,13 +7,14 @@
     <style>
     .map-container {
         position: relative;
-        width: 1500px;
-        height: 1054px;
+        width: 6000px;
+        height: 4215px;
         overflow: auto;
     }
     img {
         width: 100%;
         height: 100%;
+        display: block;
     }
     .info-box {
         position: absolute;
@@ -29,10 +30,10 @@
 </head>
 <body>
     <div class="map-container">
-        <img src="Icewind Dale map.png" usemap="#map" alt="Interactive Map"> 
+        <img src="Icewind Dale map.png" usemap="#map" alt="Interactive Map">
         <div class="info-box" id="info-box"></div>
         <map name="map">
-            <area shape="circle" coords="748,489,5" alt="Caer-Konig" href="#" onmouseover="showInfo(event, 'Caer-Konig')" onmouseout="hideInfo()" onclick="addNote(event, 'Caer-Konig')">            <area shape="circle" coords="113,38,10" alt="Town 2" href="#" onmouseover="showInfo(event, 'Town 2')" onmouseout="hideInfo()" onclick="addNote(event, 'Town 2')">
+            <area shape="circle" coords="2993,1954,20" alt="Caer-Konig" href="#" onmouseover="showInfo(event, 'Caer-Konig')" onmouseout="hideInfo()" onclick="addNote(event, 'Caer-Konig')">            <area shape="circle" coords="450,150,40" alt="Town 2" href="#" onmouseover="showInfo(event, 'Town 2')" onmouseout="hideInfo()" onclick="addNote(event, 'Town 2')">
         </map>
     </div>
     <script>
