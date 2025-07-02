@@ -26,83 +26,124 @@
         display: none;
         z-index: 10;
     }
-</style>
+    #tooltip {
+        position: absolute;
+        display: none;
+        background: rgba(0,0,0,0.8);
+        color: #fff;
+        padding: 4px 10px;
+        border-radius: 4px;
+        pointer-events: none;
+        z-index: 20;
+        font-size: 15px;
+    }
+    </style>
 </head>
 <body>
     <div class="map-container">
         <img src="Icewind Dale map.png" usemap="#map" alt="Interactive Map">
         <div class="info-box" id="info-box"></div>
+        <div id="tooltip"></div>
         <map name="map">
             <!-- Towns -->
-            <area shape="circle" coords="2993,1954,20" alt="Caer-Konig" href="#" onmouseover="showInfo(event, 'Caer-Konig')" onmouseout="hideInfo()" onclick="addNote(event, 'Caer-Konig')">            <area shape="circle" coords="450,150,40" alt="Town 2" href="#" onmouseover="showInfo(event, 'Town 2')" onmouseout="hideInfo()" onclick="addNote(event, 'Town 2')">
-            <area shape="circle" coords="1674,2152,20" alt="Bremen" href="#" onmouseover="showInfo(event, 'Bremen')" onmouseout="hideInfo()" onclick="addNote(event, 'Bremen')">
-            <area shape="circle" coords="1761,2256,30" alt="Targos" href="#" onmouseover="showInfo(event, 'Targos')" onmouseout="hideInfo()" onclick="addNote(event, 'Targos')">
-            <area shape="circle" coords="2085,1847,20" alt="Lonelywood" href="#" onmouseover="showInfo(event, 'Lonelywood')" onmouseout="hideInfo()" onclick="addNote(event, 'Lonelywood')">
-            <area shape="circle" coords="2202,1951,30" alt="Termelaine" href="#" onmouseover="showInfo(event, 'Termelaine')" onmouseout="hideInfo()" onclick="addNote(event, 'Termelaine')">
-            <area shape="circle" coords="1949,2385,30" alt="Bryn Shander" href="#" onmouseover="showInfo(event, 'Bryn Shander')" onmouseout="hideInfo()" onclick="addNote(event, 'Bryn Shander')">
-            <area shape="circle" coords="2114,2767,20" alt="Dougan's Hole" href="#" onmouseover="showInfo(event, 'Dougan\'s Hole')" onmouseout="hideInfo()" onclick="addNote(event, 'Dougan\'s Hole')">
-            <area shape="circle" coords="2349,2642,20" alt="Good Mead" href="#" onmouseover="showInfo(event, 'Good Mead')" onmouseout="hideInfo()" onclick="addNote(event, 'Good Mead')">
-            <area shape="circle" coords="2808,2504,30" alt="East Haven" href="#" onmouseover="showInfo(event, 'East Haven')" onmouseout="hideInfo()" onclick="addNote(event, 'East Haven')">
-            <area shape="circle" coords="2832,2172,20" alt="Caer-Dineval" href="#" onmouseover="showInfo(event, 'Caer-Dineval')" onmouseout="hideInfo()" onclick="addNote(event, 'Caer-Dineval')">
+            <area shape="circle" coords="2993,1954,20" alt="Caer-Konig" href="#" onmouseover="showTooltip(event, 'Caer-Konig')" onmouseout="hideTooltip()" onclick="showInfo(event, 'Caer-Konig')">
+            <area shape="circle" coords="1674,2152,20" alt="Bremen" href="#" onmouseover="showTooltip(event, 'Bremen')" onmouseout="hideTooltip()" onclick="showInfo(event, 'Bremen')">
+            <area shape="circle" coords="1761,2256,30" alt="Targos" href="#" onmouseover="showTooltip(event, 'Targos')" onmouseout="hideTooltip()" onclick="showInfo(event, 'Targos')">
+            <area shape="circle" coords="2085,1847,20" alt="Lonelywood" href="#" onmouseover="showTooltip(event, 'Lonelywood')" onmouseout="hideTooltip()" onclick="showInfo(event, 'Lonelywood')">
+            <area shape="circle" coords="2202,1951,30" alt="Termelaine" href="#" onmouseover="showTooltip(event, 'Termelaine')" onmouseout="hideTooltip()" onclick="showInfo(event, 'Termelaine')">
+            <area shape="circle" coords="1949,2385,30" alt="Bryn Shander" href="#" onmouseover="showTooltip(event, 'Bryn Shander')" onmouseout="hideTooltip()" onclick="showInfo(event, 'Bryn Shander')">
+            <area shape="circle" coords="2114,2767,20" alt="Dougan's Hole" href="#" onmouseover="showTooltip(event, 'Dougan\'s Hole')" onmouseout="hideTooltip()" onclick="showInfo(event, 'Dougan\'s Hole')">
+            <area shape="circle" coords="2349,2642,20" alt="Good Mead" href="#" onmouseover="showTooltip(event, 'Good Mead')" onmouseout="hideTooltip()" onclick="showInfo(event, 'Good Mead')">
+            <area shape="circle" coords="2808,2504,30" alt="East Haven" href="#" onmouseover="showTooltip(event, 'East Haven')" onmouseout="hideTooltip()" onclick="showInfo(event, 'East Haven')">
+            <area shape="circle" coords="2832,2172,20" alt="Caer-Dineval" href="#" onmouseover="showTooltip(event, 'Caer-Dineval')" onmouseout="hideTooltip()" onclick="showInfo(event, 'Caer-Dineval')">
         <!-- Landmarks -->
-            <area shape="circle" coords="2762,1720,100" alt="Kelvin's Cairn" href="#" onmouseover="showInfo(event, 'Kelvin\'s Cairn')" onmouseout="hideInfo()" onclick="addNote(event, 'Kelvin\'s Cairn')">
-            <area shape="poly" coords="2408,2097,2418,2097,2418,2074,2424,2064,2435,2048,2445,2036,2453,2027,2471,2018,2485,2014,2488,2007,2498,2002,2505,1980,2509,1966,2522,1960,2535,1935,2563,1922,2568,1911,2572,1890,2594,1880,2614,1869,2639,1857,2645,1849,2632,1829,2632,1829,2617,1827,2609,1827,2597,1841,2585,1854,2550,1864,2539,1871,2534,1887,2507,1902,2499,1928,2475,1953,2467,1961,2464,1973,2457,1980,2457,1988,2444,1992,2422,2015,2412,2036,2408,2046,2368,2053,2369,2070,2394,2073,2402,2095" alt="Dwarven Valley"    href="#"    onmouseover="showInfo(event, 'Dwarven Valley')"   onmouseout="hideInfo()"   onclick="addNote(event, 'Dwarven Valley')">
-            <area shape="poly" coords="1703,2144,1710,2195,1734,2207,1742,2222,1768,2219,1788,2229,1793,2252,1858,2262,1909,2255,1966,2239,1982,2217,1989,2204,2020,2185,2058,2121,2072,2105,2101,2095,2121,2060,2146,2043,2182,2017,2193,1977,2170,1966,2163,1951,2156,1932,2162,1916,2144,1916,2130,1921,2112,1916,2108,1897,2101,1886,2074,1877,2054,1850,2055,1830,2065,1822,2084,1816,2139,1772,2159,1724,2160,1697,2143,1669,2126,1659,2112,1673,2039,1696,1985,1728,1930,1740,1855,1799,1834,1829,1834,1829,1785,1866,1768,1895,1752,1968,1762,2013,1760,2047,1740,2092,1699,2149" alt="Maer Dualdon" href="#" onmouseover="showInfo(event, 'Maer Dualdon')" onmouseout="hideInfo()" onclick="addNote(event, 'Maer Dualdon')">
-            <area shape="poly" coords="167,1153,644,1135,796,930,842,592,1464,576,2278,529,2257,568,2257,583,2266,590,2269,619,2267,675,2278,727,2251,799,2153,876,2017,920,1950,968,1908,1021,1751,1093,1628,1270,1617,1298,1480,1385,1446,1388,1364,1426,1294,1418,1246,1404,1157,1433,1084,1450,897,1488,882,1491,855,1505,786,1500,785,1500,733,1517,720,1530,607,1532,505,1531,472,1507,368,1509,279,1516,265,1506,173,1520" alt="Sea of Moving Ice" href="#" onmouseover="showInfo(event, 'Sea of Moving Ice')" onmouseout="hideInfo()" onclick="addNote(event, 'Sea of Moving Ice')">
-            <area shape="poly" coords="1615,2212,1602,2227,1602,2227,1585,2269,1569,2291,1540,2312,1445,2341,1419,2360,1392,2389,1339,2406,1308,2396,1286,2376,1245,2370,1193,2383,1150,2398,1097,2400,1060,2408,1033,2427,1025,2442,1010,2461,983,2474,940,2488,947,2501,967,2490,1005,2479,1025,2460,1040,2433,1063,2420,1090,2412,1130,2411,1149,2409,1223,2386,1278,2393,1307,2411,1374,2411,1392,2404,1448,2354,1473,2346,1545,2327,1568,2311,1592,2278,1603,2250,1617,2230" alt="Shaengarne River" href="#" onmouseover="showInfo(event, 'Shaengarne River')" onmouseout="hideInfo()" onclick="addNote(event, 'Shaengarne River')">
-            <area shape="poly" coords="2183,2936,2173,2914,2196,2905,2247,2888,2277,2860,2322,2842,2349,2814,2389,2795,2418,2755,2469,2740,2491,2704,2532,2694,2606,2663,2602,2689,2549,2713,2537,2724,2536,2750,2512,2760,2496,2772,2479,2775,2469,2790,2451,2790,2432,2791,2412,2802,2407,2810,2353,2829,2347,2838,2323,2851,2220,2901,2182,2940" alt="Redwaters" href="#" onmouseover="showInfo(event, 'Redwaters')" onmouseout="hideInfo()" onclick="addNote(event, 'Redwaters')">
-            <area shape="poly" coords="378,3218,408,3218,428,3209,462,3207,480,3235,527,3250,571,3254,590,3236,623,3239,631,3254,653,3263,731,3257,747,3250,768,3217,810,3207,818,3208,822,3224,855,3235,865,3230,872,3223,897,3239,925,3246,933,3244,943,3236,951,3226,963,3222,976,3228,978,3233,961,3249,961,3260,970,3269,1041,3278,1070,3290,1077,3306,1100,3320,1140,3320,1160,3307,1215,3302,1227,3308,1302,3306,1321,3293,1331,3273,1353,3264,1371,3266,1392,3257,1413,3229,1437,3216,1451,3210,1477,3199,1492,3200,1538,3203,1559,3192,1606,3178,1622,3156,1661,3140,1680,3125,1703,3096,1757,3013,1734,3085,1818,3094,1840,3088,1872,3055,1912,3047,1944,3038,1969,3017,2049,3007,2069,3014,2092,3028,2098,3026,2083,3015,2084,3007,2141,2995,2131,2985,2071,2999,2003,2998,1972,3008,1947,3027,1928,3036,1908,3042,1883,3040,1860,3056,1844,3076,1827,3082,1731,3073,1704,3077,1690,3086,1668,3119,1658,3130,1617,3148,1606,3166,1598,3174,1568,3179,1542,3192,1508,3197,1478,3190,1458,3193,1442,3206,1419,3215,1402,3232,1386,3253,1359,3256,1336,3256,1320,3267,1308,3292,1292,3304,1251,3306,1218,3288,1187,3286,1159,3293,1130,3302,1081,3293,1059,3269,985,3260,978,3254,984,3238,987,3232,985,3222,969,3213,944,3219,927,3232,900,3229,888,3217,867,3209,847,3218,834,3216,826,3199,812,3192,769,3202,749,3223,740,3240,644,3245,624,3228,593,3220,508,3235,488,3225,474,3200,430,3195,413,3206,384,3206" alt="The Redrun" href="#" onmouseover="showInfo(event, 'The Redrun')" onmouseout="hideInfo()" onclick="addNote(event, 'The Redrun')">
-            <area shape="poly" coords="5275,1999,5155,2083,5002,2092,4912,2131,4828,2149,4900,2218,5017,2239,5095,2302,5074,2371,5059,2440,4981,2425,4981,2425,4972,2347,4888,2341,4741,2350,4624,2461,4486,2539,4255,2362,4078,2386,3880,2494,3904,2626,3970,2689,3973,2755,3889,2743,3814,2827,3868,2965,3847,3025,3886,3148,3910,3211,3859,3238,3883,3196,3811,3154,3829,3088,3751,2992,3655,2920,3553,2980,3238,3103,3079,3061,2878,3175,2971,3157,2890,3178,2836,3217,2668,3283,2545,3271,2485,3229,2503,3133,2413,3070,2344,3151,2218,3073,2161,3112,2179,3160,2110,3160,2059,3235,2071,3286,2008,3388,2089,3475,2116,3520,2107,3622,2194,3622,2308,3478,2329,3445,2311,3373,2407,3385,2380,3466,2410,3541,2461,3610,2548,3631,2602,3676,2722,3736,2815,3718,2743,3757,2569,3745,2344,3781,2116,3781,2146,3871,2041,3925,2059,3763,1999,3631,1705,3538,1543,3616,1417,3709,1348,3832,1216,4060,3334,4060,3505,3889,3823,3913,4102,3844,4564,3928,5035,3967,5365,3982,5494,3826,5329,3490,5434,3244,5704,3277,5878,2686,5854,2518,5713,2392,5404,2299,5329,1975" alt="Spine of The World" href="#" onmouseover="showInfo(event, 'Spine of The World')" onmouseout="hideInfo()" onclick="addNote(event, 'Spine of The World')">
-            <area shape="poly" coords="1918,2410,1885,2425,1828,2464,1828,2494,1789,2512,1771,2587,1666,2656,1648,2764,1651,2788,1705,2815,1717,2893,1696,2995,1663,3046,1645,3088,1645,3157,1645,3244,1645,3337,1633,3409,1585,3487,1531,3589,1426,3676,1366,3754,1306,3835,1261,3874,1228,3943,1171,4051,1168,4087,1219,3982,1282,3862,1354,3787,1411,3706,1507,3649,1621,3469,1657,3277,1657,3166,1657,3094,1699,3001,1732,2881,1723,2818,1714,2800,1657,2761,1660,2671,1747,2629,1783,2575,1810,2527,1843,2476,1906,2431" alt="Ten Trail" href="#" onmouseover="showInfo(event, 'Ten Trail')" onmouseout="hideInfo()" onclick="addNote(event, 'Ten Trail')">
-            <area shape="poly" coords="1984,2404,2014,2404,2035,2428,2041,2434,2068,2422,2098,2440,2185,2419,2320,2458,2485,2488,2521,2506,2578,2512,2623,2533,2668,2524,2725,2548,2779,2527,2767,2515,2734,2533,2686,2515,2629,2515,2533,2491,2449,2455,2401,2446,2242,2410,2188,2398,2104,2413,2080,2395,2044,2410,2026,2377,1993,2380" alt="The Eastway" href="#" onmouseover="showInfo(event, 'The Eastway')" onmouseout="hideInfo()" onclick="addNote(event, 'The Eastway')">
-            <area shape="poly" coords="5872,2497,5722,2362,5431,2296,5368,1981,5281,1909,5218,1855,5086,1804,4981,1783,4981,1747,4933,1651,4897,1603,4882,1498,4918,1468,4942,1438,4951,1399,5074,1153,5074,1066,5080,922,5110,859,5110,799,5137,760,5140,733,5065,643,5062,454,5077,445,4987,358,4969,253,4966,235,4900,199,4894,157,4828,112,5881,118,5887,2503" alt="Reghed Glacier" href="#" onmouseover="showInfo(event, 'Reghed Glacier')" onmouseout="hideInfo()" onclick="addNote(event, 'Reghed Glacier')">
-            <area shape="poly" coords="3193,1963,3040,2056,3022,2074,3013,2095,2983,2128,2965,2185,2941,2263,2914,2287,2929,2206,2908,2206,2782,2335,2782,2374,2803,2407,2851,2419,2866,2470,2917,2398,3016,2389,3025,2368,3103,2359,3118,2314,3055,2320,3046,2146,3085,2080,3142,2074,3214,1984" alt="Lac Dinneshere" href="#" onmouseover="showInfo(event, 'Lac Dinneshere')" onmouseout="hideInfo()" onclick="addNote(event, 'Lac Dinneshere')">
+            <area shape="circle" coords="2762,1720,100" alt="Kelvin's Cairn" href="#" onmouseover="showTooltip(event, 'Kelvin\'s Cairn')" onmouseout="hideTooltip()" onclick="showInfo(event, 'Kelvin\'s Cairn')">
+            <area shape="poly" coords="2408,2097,2418,2097,2418,2074,2424,2064,2435,2048,2445,2036,2453,2027,2471,2018,2485,2014,2488,2007,2498,2002,2505,1980,2509,1966,2522,1960,2535,1935,2563,1922,2568,1911,2572,1890,2594,1880,2614,1869,2639,1857,2645,1849,2632,1829,2632,1829,2617,1827,2609,1827,2597,1841,2585,1854,2550,1864,2539,1871,2534,1887,2507,1902,2499,1928,2475,1953,2467,1961,2464,1973,2457,1980,2457,1988,2444,1992,2422,2015,2412,2036,2408,2046,2368,2053,2369,2070,2394,2073,2402,2095" alt="Dwarven Valley" href="#" onmouseover="showTooltip(event, 'Dwarven Valley')" onmouseout="hideTooltip()" onclick="showInfo(event, 'Dwarven Valley')">
+            <area shape="poly" coords="1703,2144,1710,2195,1734,2207,1742,2222,1768,2219,1788,2229,1793,2252,1858,2262,1909,2255,1966,2239,1982,2217,1989,2204,2020,2185,2058,2121,2072,2105,2101,2095,2121,2060,2146,2043,2182,2017,2193,1977,2170,1966,2163,1951,2156,1932,2162,1916,2144,1916,2130,1921,2112,1916,2108,1897,2101,1886,2074,1877,2054,1850,2055,1830,2065,1822,2084,1816,2139,1772,2159,1724,2160,1697,2143,1669,2126,1659,2112,1673,2039,1696,1985,1728,1930,1740,1855,1799,1834,1829,1834,1829,1785,1866,1768,1895,1752,1968,1762,2013,1760,2047,1740,2092,1699,2149" alt="Maer Dualdon" href="#" onmouseover="showTooltip(event, 'Maer Dualdon')" onmouseout="hideTooltip()" onclick="showInfo(event, 'Maer Dualdon')">
+            <area shape="poly" coords="167,1153,644,1135,796,930,842,592,1464,576,2278,529,2257,568,2257,583,2266,590,2269,619,2267,675,2278,727,2251,799,2153,876,2017,920,1950,968,1908,1021,1751,1093,1628,1270,1617,1298,1480,1385,1446,1388,1364,1426,1294,1418,1246,1404,1157,1433,1084,1450,897,1488,882,1491,855,1505,786,1500,785,1500,733,1517,720,1530,607,1532,505,1531,472,1507,368,1509,279,1516,265,1506,173,1520" alt="Sea of Moving Ice" href="#" onmouseover="showTooltip(event, 'Sea of Moving Ice')" onmouseout="hideTooltip()" onclick="showInfo(event, 'Sea of Moving Ice')">
+            <area shape="poly" coords="1615,2212,1602,2227,1602,2227,1585,2269,1569,2291,1540,2312,1445,2341,1419,2360,1392,2389,1339,2406,1308,2396,1286,2376,1245,2370,1193,2383,1150,2398,1097,2400,1060,2408,1033,2427,1025,2442,1010,2461,983,2474,940,2488,947,2501,967,2490,1005,2479,1025,2460,1040,2433,1063,2420,1090,2412,1130,2411,1149,2409,1223,2386,1278,2393,1307,2411,1374,2411,1392,2404,1448,2354,1473,2346,1545,2327,1568,2311,1592,2278,1603,2250,1617,2230" alt="Shaengarne River" href="#" onmouseover="showTooltip(event, 'Shaengarne River')" onmouseout="hideTooltip()" onclick="showInfo(event, 'Shaengarne River')">
+            <area shape="poly" coords="2183,2936,2173,2914,2196,2905,2247,2888,2277,2860,2322,2842,2349,2814,2389,2795,2418,2755,2469,2740,2491,2704,2532,2694,2606,2663,2602,2689,2549,2713,2537,2724,2536,2750,2512,2760,2496,2772,2479,2775,2469,2790,2451,2790,2432,2791,2412,2802,2407,2810,2353,2829,2347,2838,2323,2851,2220,2901,2182,2940" alt="Redwaters" href="#" onmouseover="showTooltip(event, 'Redwaters')" onmouseout="hideTooltip()" onclick="showInfo(event, 'Redwaters')">
+            <area shape="poly" coords="378,3218,408,3218,428,3209,462,3207,480,3235,527,3250,571,3254,590,3236,623,3239,631,3254,653,3263,731,3257,747,3250,768,3217,810,3207,818,3208,822,3224,855,3235,865,3230,872,3223,897,3239,925,3246,933,3244,943,3236,951,3226,963,3222,976,3228,978,3233,961,3249,961,3260,970,3269,1041,3278,1070,3290,1077,3306,1100,3320,1140,3320,1160,3307,1215,3302,1227,3308,1302,3306,1321,3293,1331,3273,1353,3264,1371,3266,1392,3257,1413,3229,1437,3216,1451,3210,1477,3199,1492,3200,1538,3203,1559,3192,1606,3178,1622,3156,1661,3140,1680,3125,1703,3096,1757,3013,1734,3085,1818,3094,1840,3088,1872,3055,1912,3047,1944,3038,1969,3017,2049,3007,2069,3014,2092,3028,2098,3026,2083,3015,2084,3007,2141,2995,2131,2985,2071,2999,2003,2998,1972,3008,1947,3027,1928,3036,1908,3042,1883,3040,1860,3056,1844,3076,1827,3082,1731,3073,1704,3077,1690,3086,1668,3119,1658,3130,1617,3148,1606,3166,1598,3174,1568,3179,1542,3192,1508,3197,1478,3190,1458,3193,1442,3206,1419,3215,1402,3232,1386,3253,1359,3256,1336,3256,1320,3267,1308,3292,1292,3304,1251,3306,1218,3288,1187,3286,1159,3293,1130,3302,1081,3293,1059,3269,985,3260,978,3254,984,3238,987,3232,985,3222,969,3213,944,3219,927,3232,900,3229,888,3217,867,3209,847,3218,834,3216,826,3199,812,3192,769,3202,749,3223,740,3240,644,3245,624,3228,593,3220,508,3235,488,3225,474,3200,430,3195,413,3206,384,3206" alt="The Redrun" href="#" onmouseover="showTooltip(event, 'The Redrun')" onmouseout="hideTooltip()" onclick="showInfo(event, 'The Redrun')">
+            <area shape="poly" coords="5275,1999,5155,2083,5002,2092,4912,2131,4828,2149,4900,2218,5017,2239,5095,2302,5074,2371,5059,2440,4981,2425,4981,2425,4972,2347,4888,2341,4741,2350,4624,2461,4486,2539,4255,2362,4078,2386,3880,2494,3904,2626,3970,2689,3973,2755,3889,2743,3814,2827,3868,2965,3847,3025,3886,3148,3910,3211,3859,3238,3883,3196,3811,3154,3829,3088,3751,2992,3655,2920,3553,2980,3238,3103,3079,3061,2878,3175,2971,3157,2890,3178,2836,3217,2668,3283,2545,3271,2485,3229,2503,3133,2413,3070,2344,3151,2218,3073,2161,3112,2179,3160,2110,3160,2059,3235,2071,3286,2008,3388,2089,3475,2116,3520,2107,3622,2194,3622,2308,3478,2329,3445,2311,3373,2407,3385,2380,3466,2410,3541,2461,3610,2548,3631,2602,3676,2722,3736,2815,3718,2743,3757,2569,3745,2344,3781,2116,3781,2146,3871,2041,3925,2059,3763,1999,3631,1705,3538,1543,3616,1417,3709,1348,3832,1216,4060,3334,4060,3505,3889,3823,3913,4102,3844,4564,3928,5035,3967,5365,3982,5494,3826,5329,3490,5434,3244,5704,3277,5878,2686,5854,2518,5713,2392,5404,2299,5329,1975" alt="Spine of The World" href="#" onmouseover="showTooltip(event, 'Spine of The World')" onmouseout="hideTooltip()" onclick="showInfo(event, 'Spine of The World')">
+            <area shape="poly" coords="1918,2410,1885,2425,1828,2464,1828,2494,1789,2512,1771,2587,1666,2656,1648,2764,1651,2788,1705,2815,1717,2893,1696,2995,1663,3046,1645,3088,1645,3157,1645,3244,1645,3337,1633,3409,1585,3487,1531,3589,1426,3676,1366,3754,1306,3835,1261,3874,1228,3943,1171,4051,1168,4087,1219,3982,1282,3862,1354,3787,1411,3706,1507,3649,1621,3469,1657,3277,1657,3166,1657,3094,1699,3001,1732,2881,1723,2818,1714,2800,1657,2761,1660,2671,1747,2629,1783,2575,1810,2527,1843,2476,1906,2431" alt="Ten Trail" href="#" onmouseover="showTooltip(event, 'Ten Trail')" onmouseout="hideTooltip()" onclick="showInfo(event, 'Ten Trail')">
+            <area shape="poly" coords="1984,2404,2014,2404,2035,2428,2041,2434,2068,2422,2098,2440,2185,2419,2320,2458,2485,2488,2521,2506,2578,2512,2623,2533,2668,2524,2725,2548,2779,2527,2767,2515,2734,2533,2686,2515,2629,2515,2533,2491,2449,2455,2401,2446,2242,2410,2188,2398,2104,2413,2080,2395,2044,2410,2026,2377,1993,2380" alt="The Eastway" href="#" onmouseover="showTooltip(event, 'The Eastway')" onmouseout="hideTooltip()" onclick="showInfo(event, 'The Eastway')">
         </map>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzZ_LsmkW77m3zjEAwM2F80rGsg8Gyf7B-XAdknKat3f2CgK89XWuHb_osogIdgzD_Y/exec';
-        let areaNotes = {};
-        async function fetchNotes() {
-            const res = await fetch(SHEET_URL);
-            areaNotes = await res.json();
-        }
+const supabaseUrl = 'https://icegrpezjqzsjuthlpew.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljZWdycGV6anF6c2p1dGhscGV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0NDIwMzEsImV4cCI6MjA2NzAxODAzMX0.aWEIxKTOGqw-fc_27DjSQKVehgCxS592wddkPZEyRuM';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-        async function saveNote(area, note) {
-            await fetch(SHEET_URL, {
-                method: 'POST',
-                body: JSON.stringify({ area, note }),
-                headers: { 'Content-Type': 'application/json' }
-            });
-            areaNotes[area] = note;
-        }
+// You can now use `supabase` to fetch and save notes!
+    </script>
+    <script>
+const SUPABASE_URL = 'https://icegrpezjqzsjuthlpew.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljZWdycGV6anF6c2p1dGhscGV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0NDIwMzEsImV4cCI6MjA2NzAxODAzMX0.aWEIxKTOGqw-fc_27DjSQKVehgCxS592wddkPZEyRuM';
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        function showInfo(event, title) {
-            const infoBox = document.getElementById("info-box");
-            infoBox.style.display = "block";
-            const note = areaNotes[title] || 'No note yet. Click to add.';
-            infoBox.innerHTML = `<strong>${title}</strong><p>${note}</p>`;
-            const x = event.clientX;
-            const y = event.clientY;
-            infoBox.style.left = `${x + 20}px`;
-            infoBox.style.top = `${y + 20}px`;
-        }
+let areaNotes = {};
+let currentArea = null;
 
-        function hideInfo() {
-            const infoBox = document.getElementById("info-box");
-            infoBox.style.display = "none";
-        }
+async function fetchNotes() {
+    const { data, error } = await supabase.from('notes').select('*');
+    if (data) {
+        areaNotes = {};
+        data.forEach(row => areaNotes[row.area] = row.note);
+    }
+}
 
-        async function addNote(event, title) {
-            event.preventDefault();
-            const currentNote = areaNotes[title] || '';
-            const note = prompt(`Add or edit note for ${title}:`, currentNote);
-            if (note !== null) {
-                await saveNote(title, note);
-            }
-        }
+async function saveNote(area, note) {
+    await supabase
+        .from('notes')
+        .upsert([{ area, note }], { onConflict: ['area'] });
+    areaNotes[area] = note;
+}
 
-        // Fetch notes on page load
-        fetchNotes();
+function showInfo(event, title) {
+    currentArea = title;
+    const infoBox = document.getElementById("info-box");
+    infoBox.style.display = "block";
+    const note = areaNotes[title] || '';
+    infoBox.innerHTML = `
+        <strong>${title}</strong>
+        <textarea id="note-input" style="width:100%;height:60px;">${note}</textarea>
+        <button onclick="saveNoteFromBox()">Save Note</button>
+        <button onclick="hideInfo()">Close</button>
+    `;
+    const x = event.clientX;
+    const y = event.clientY;
+    infoBox.style.left = `${x + 20}px`;
+    infoBox.style.top = `${y + 20}px`;
+}
+
+function hideInfo() {
+    const infoBox = document.getElementById("info-box");
+    infoBox.style.display = "none";
+}
+
+async function saveNoteFromBox() {
+    const note = document.getElementById("note-input").value;
+    if (currentArea) {
+        await saveNote(currentArea, note);
+        hideInfo();
+    }
+}
+
+// Tooltip functions
+function showTooltip(event, name) {
+    const tooltip = document.getElementById("tooltip");
+    tooltip.textContent = name;
+    tooltip.style.display = "block";
+    tooltip.style.left = (event.clientX + 15) + "px";
+    tooltip.style.top = (event.clientY + 15) + "px";
+}
+function hideTooltip() {
+    document.getElementById("tooltip").style.display = "none";
+}
+
+// Fetch notes on page load
+fetchNotes();
     </script>
 </body>
 </html>
