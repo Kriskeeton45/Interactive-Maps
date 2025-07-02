@@ -60,9 +60,8 @@
         </map>
     </div>
     <script>
-        const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwGunrJcSGvEQlD20-TZ5dzZWIG8IiXqL-Q3sUw9vCx15Js4ugS-z0FDqbTCvFCrIhM/exec';
+        const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzZ_LsmkW77m3zjEAwM2F80rGsg8Gyf7B-XAdknKat3f2CgK89XWuHb_osogIdgzD_Y/exec';
         let areaNotes = {};
-
         async function fetchNotes() {
             const res = await fetch(SHEET_URL);
             areaNotes = await res.json();
