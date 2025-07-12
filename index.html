@@ -69,24 +69,21 @@
             <area shape="poly" coords="1984,2404,2014,2404,2035,2428,2041,2434,2068,2422,2098,2440,2185,2419,2320,2458,2485,2488,2521,2506,2578,2512,2623,2533,2668,2524,2725,2548,2779,2527,2767,2515,2734,2533,2686,2515,2629,2515,2533,2491,2449,2455,2401,2446,2242,2410,2188,2398,2104,2413,2080,2395,2044,2410,2026,2377,1993,2380" alt="The Eastway" href="#" onmouseover="showTooltip(event, 'The Eastway')" onmouseout="hideTooltip()" onclick="showInfo(event, 'The Eastway')">
         </map>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script>
-const supabaseUrl = 'https://icegrpezjqzsjuthlpew.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljZWdycGV6anF6c2p1dGhscGV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0NDIwMzEsImV4cCI6MjA2NzAxODAzMX0.aWEIxKTOGqw-fc_27DjSQKVehgCxS592wddkPZEyRuM';
-const supabase = createClient(supabaseUrl, supabaseKey);
-
-// You can now use `supabase` to fetch and save notes!
-    </script>
-    <script>
-const SUPABASE_URL = 'https://icegrpezjqzsjuthlpew.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljZWdycGV6anF6c2p1dGhscGV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0NDIwMzEsImV4cCI6MjA2NzAxODAzMX0.aWEIxKTOGqw-fc_27DjSQKVehgCxS592wddkPZEyRuM';
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    <script type="module">
+     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+     const SUPABASE_URL = 'https://icegrpezjqzsjuthlpew.supabase.co';
+     const SUPABASE_KEY = 'your-key-here';
+     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let areaNotes = {};
 let currentArea = null;
 
 async function fetchNotes() {
     const { data, error } = await supabase.from('notes').select('*');
+    if (error) {
+        console.error('Error fetching notes:', error);
+        return;
+    }
     if (data) {
         areaNotes = {};
         data.forEach(row => areaNotes[row.area] = row.note);
